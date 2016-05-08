@@ -1,0 +1,74 @@
+<div class="col-md-12">
+    <div class="page-header">
+        <h1>Order books
+            <small>Select which book to add to your basket</small>
+        </h1>
+    </div>
+
+    <div class="col-md-9">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>ISBN</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="book in books | filter:filterBook">
+
+                <td>{{book.name}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.description}}</td>
+                <td>{{book.isbn}}</td>
+                <td>{{book.price}}&euro;</td>
+                <td>
+                    <button class="btn btn-success" ng-click="addBook(book)"><span
+                            class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Buy
+                    </button>
+                </td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+    <div class="col-md-3">
+        <h2>Basket</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Book</th>
+                <th scope="col">Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="orderLine in orderLines">
+                <td>{{orderLine.book.name}}</td>
+                <td>{{orderLine.quantity}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="form-group"><label for="bookBeanBookTotal">Total</label><span
+                id="bookBeanBookTotal" type="text" class="form-control alert-success">{{orderTotal | number:2 }}</span>
+        </div>
+        <div class="form-group"><label for="bookBeanBookName">Name</label>
+            <input id="bookBeanBookName" type="text" ng-model="orderName" class="form-control"/>
+        </div>
+        <div class="form-group"><label for="bookBeanBookAuthor">Address</label>
+            <input id="bookBeanBookAuthor" type="text" ng-model="orderAddress" class="form-control"/>
+
+        </div>
+        <button class="btn btn-success" ng-click="sendOrder()">Send order
+        </button>
+    </div>
+
+</div>

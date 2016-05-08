@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{orderLineBean.id}'/>
+		<f:event type="preRenderView" listener='#{orderLineBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="Create Order Line"/>
+
+	<ui:define name="header">
+		Order Line
+	</ui:define>
+
+	<ui:define name="subheader">
+		<c:choose>
+			<c:when test='#{!empty orderLineBean.id}'>
+				Edit existing Order Line
+			</c:when>
+			<c:otherwise>
+				Create a new Order Line
+			</c:otherwise>
+		</c:choose>
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:form id="create">
+			<h:messages globalOnly="true" styleClass="error"/>
+
+			<h:panelGrid columnClasses="label,component,required" columns="3">
+				<h:outputLabel for="orderLineBeanOrderLineQuantity" value="Quantity:"/>
+				<h:panelGroup>
+					<h:inputText id="orderLineBeanOrderLineQuantity" value="#{orderLineBean.orderLine.quantity}"/>
+					<h:message for="orderLineBeanOrderLineQuantity" styleClass="error"/>
+				</h:panelGroup>
+				<h:outputText/>
+				<h:outputLabel for="orderLineBeanOrderLineBook" value="Book:"/>
+				<h:panelGrid columnClasses="label,component,required" columns="3" id="orderLineBeanOrderLineBook">
+					<h:outputLabel for="orderLineBeanOrderLineBookName" value="Name:"/>
+					<h:panelGroup>
+						<h:inputText id="orderLineBeanOrderLineBookName" required="true" value="#{orderLineBean.orderLine.book.name}"/>
+						<h:message for="orderLineBeanOrderLineBookName" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText value="*"/>
+					<h:outputLabel for="orderLineBeanOrderLineBookDescription" value="Description:"/>
+					<h:panelGroup>
+						<h:inputText id="orderLineBeanOrderLineBookDescription" value="#{orderLineBean.orderLine.book.description}"/>
+						<h:message for="orderLineBeanOrderLineBookDescription" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="orderLineBeanOrderLineBookIsbn" value="Isbn:"/>
+					<h:panelGroup>
+						<h:inputText id="orderLineBeanOrderLineBookIsbn" maxLength="13" value="#{orderLineBean.orderLine.book.isbn}"/>
+						<h:message for="orderLineBeanOrderLineBookIsbn" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="orderLineBeanOrderLineBookPictureURL" value="Picture URL:"/>
+					<h:panelGroup>
+						<h:inputText id="orderLineBeanOrderLineBookPictureURL" maxLength="255" value="#{orderLineBean.orderLine.book.pictureURL}"/>
+						<h:message for="orderLineBeanOrderLineBookPictureURL" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="orderLineBeanOrderLineBookAuthor" value="Author:"/>
+					<h:panelGroup>
+						<h:inputText id="orderLineBeanOrderLineBookAuthor" value="#{orderLineBean.orderLine.book.author}"/>
+						<h:message for="orderLineBeanOrderLineBookAuthor" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText/>
+					<h:outputLabel for="orderLineBeanOrderLineBookPrice" value="Price:"/>
+					<h:panelGroup>
+						<h:inputText id="orderLineBeanOrderLineBookPrice" required="true" value="#{orderLineBean.orderLine.book.price}"/>
+						<h:message for="orderLineBeanOrderLineBookPrice" styleClass="error"/>
+					</h:panelGroup>
+					<h:outputText value="*"/>
+				</h:panelGrid>
+				<h:outputText value="*"/>
+			</h:panelGrid>
+
+			<div class="buttons">
+				<h:commandLink value="Save" action='#{orderLineBean.update}' styleClass="btn btn-primary"/>
+				<c:choose>
+					<c:when test='#{!empty orderLineBean.id}'>
+						<h:link value="Cancel" outcome="view" styleClass="btn btn-primary">
+							<f:param name="id" value='#{orderLineBean.id}'/>
+						</h:link>
+						<h:commandLink value="Delete" action='#{orderLineBean.delete}' styleClass="btn btn-primary"/>
+					</c:when>
+					<c:otherwise>
+						<h:link value="Cancel" outcome="search" styleClass="btn btn-primary"/>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

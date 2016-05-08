@@ -1,0 +1,11 @@
+body {
+    padding-top: 70px;
+}
+
+footer {
+    margin-top: 20px;
+}
+
+.white {
+    color: white !important;
+}

@@ -1,0 +1,45 @@
+<div class="col-md-12">
+    <div class="page-header">
+        <h1>
+            Order
+            <small>
+                View existing Order
+            </small>
+        </h1>
+    </div>
+
+</div>
+<div class="col-md-9">
+
+    <div class="form-group"><label for="orderBeanOrderTotalOrder">Total Order</label><span id="orderBeanOrderTotalOrder"
+                                                                                           class="form-control">{{order.totalOrder | number:2}}</span>
+    </div>
+    <div class="form-group"><label for="orderBeanOrderName">Name</label><span id="orderBeanOrderName"
+                                                                              class="form-control">{{order.name}}</span>
+    </div>
+    <div class="form-group"><label for="orderBeanOrderAddress">Address:</label><span id="orderBeanOrderAddress"
+                                                                                     class="form-control">{{order.address}}</span>
+    </div>
+    <div class="form-group"><label for="orderBeanOrderCreationDate">Creation Date</label><span
+            id="orderBeanOrderCreationDate"
+            class="form-control">{{order.creationDate | date:'dd.MM.yyyy HH:mm' }}</span>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="orderLine in order.orderLines">
+            <td><a href="#/books/{{orderLine.book.id}}">{{orderLine.book.name}}</a></td>
+            <td>{{orderLine.quantity}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="col-md-3"><a href="#/orders" class="btn btn-primary">View All</a>
+</div>
+</div>

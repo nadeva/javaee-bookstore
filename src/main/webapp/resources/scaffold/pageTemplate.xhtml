@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <title>#{empty pageTitle ? 'Bookstore' : pageTitle}</title>
+    <link rel="icon" href='#{resource["favicon.ico"]}'/>
+    <h:outputStylesheet name="css/bootstrap.min.css"/>
+    <h:outputStylesheet name="css/bookstore.css"/>
+</h:head>
+
+<h:body>
+    <ui:debug rendered="#{facesContext.application.projectStage == 'Development'}"/>
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <h:outputLink value="../../angularjs/index.html" styleClass="navbar-brand">
+                    Angular
+                </h:outputLink>
+
+                <h:outputLink value="../../faces/home/index.xhtml" styleClass="navbar-brand white">
+                    JSF
+                </h:outputLink>
+
+
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Librarian<span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <h:link outcome="/book/search" value="Search books"/>
+                            </li>
+                            <li>
+                                <h:link outcome="/book/create" value="Create books"/>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <h:link outcome="/orderLine/search" value="Customer"/>
+                    </li>
+                    <li>
+                        <h:link outcome="/order/search" value="Delivery man"/>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1><ui:insert name="header"/>
+                        <small><ui:insert name="subheader"/></small>
+                    </h1>
+                </div>
+
+            </div>
+            <ui:insert name="main"/>
+        </div>
+    </div>
+    <footer>
+        <div class="text-center">
+            <p>Read source code on <a href="https://github.com/oltruong/javaee-bookstore" target="_blank">GitHub</a></p>
+        </div>
+    </footer>
+    <h:outputScript name="js/jquery-2.1.1.min.js"></h:outputScript>
+    <h:outputScript name="js/bootstrap.min.js"></h:outputScript>
+</h:body>
+</html>

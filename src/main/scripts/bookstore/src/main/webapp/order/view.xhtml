@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/resources/scaffold/pageTemplate.xhtml">
+
+	<f:metadata>
+		<f:viewParam name="id" value='#{orderBean.id}'/>
+		<f:event type="preRenderView" listener='#{orderBean.retrieve}'/>
+	</f:metadata>
+
+	<ui:param name="pageTitle" value="View Order"/>
+
+	<ui:define name="header">
+		Order
+	</ui:define>
+
+	<ui:define name="subheader">
+		View existing Order
+	</ui:define>
+
+	<ui:define name="footer"/>
+
+	<ui:define name="main">
+		<h:panelGrid columnClasses="label,component,required" columns="3">
+			<h:outputLabel for="orderBeanOrderName" value="Name:"/>
+			<h:outputText id="orderBeanOrderName" value="#{orderBean.order.name}"/>
+			<h:outputText/>
+			<h:outputLabel for="orderBeanOrderAddress" value="Address:"/>
+			<h:outputText id="orderBeanOrderAddress" value="#{orderBean.order.address}"/>
+			<h:outputText/>
+			<h:outputLabel for="orderBeanOrderCreationDate" value="Creation Date:"/>
+			<h:outputText id="orderBeanOrderCreationDate" value="#{orderBean.order.creationDate}">
+				<f:convertDateTime type="date"/>
+			</h:outputText>
+			<h:outputText/>
+			<h:outputLabel for="orderBeanOrderTotalOrder" value="Total Order:"/>
+			<h:outputText id="orderBeanOrderTotalOrder" value="#{orderBean.order.totalOrder}"/>
+			<h:outputText/>
+			<h:outputLabel for="orderBeanOrderOrderLines" value="Order Lines:"/>
+			<h:panelGrid columnClasses="label,component,required" columns="3" id="orderBeanOrderOrderLines">
+				<h:outputLabel for="orderBeanOrderOrderLinesQuantity" value="Quantity:"/>
+				<h:outputText id="orderBeanOrderOrderLinesQuantity" value="#{orderBean.order.orderLines.quantity}"/>
+				<h:outputText/>
+				<h:outputLabel for="orderBeanOrderOrderLinesBook" value="Book:"/>
+				<h:panelGrid columnClasses="label,component,required" columns="3" id="orderBeanOrderOrderLinesBook">
+					<h:outputLabel for="orderBeanOrderOrderLinesBookName" value="Name:"/>
+					<h:outputText id="orderBeanOrderOrderLinesBookName" value="#{orderBean.order.orderLines.book.name}"/>
+					<h:outputText/>
+					<h:outputLabel for="orderBeanOrderOrderLinesBookDescription" value="Description:"/>
+					<h:outputText id="orderBeanOrderOrderLinesBookDescription" value="#{orderBean.order.orderLines.book.description}"/>
+					<h:outputText/>
+					<h:outputLabel for="orderBeanOrderOrderLinesBookIsbn" value="Isbn:"/>
+					<h:outputText id="orderBeanOrderOrderLinesBookIsbn" value="#{orderBean.order.orderLines.book.isbn}"/>
+					<h:outputText/>
+					<h:outputLabel for="orderBeanOrderOrderLinesBookPictureURL" value="Picture URL:"/>
+					<h:outputText id="orderBeanOrderOrderLinesBookPictureURL" value="#{orderBean.order.orderLines.book.pictureURL}"/>
+					<h:outputText/>
+					<h:outputLabel for="orderBeanOrderOrderLinesBookAuthor" value="Author:"/>
+					<h:outputText id="orderBeanOrderOrderLinesBookAuthor" value="#{orderBean.order.orderLines.book.author}"/>
+					<h:outputText/>
+					<h:outputLabel for="orderBeanOrderOrderLinesBookPrice" value="Price:"/>
+					<h:outputText id="orderBeanOrderOrderLinesBookPrice" value="#{orderBean.order.orderLines.book.price}"/>
+					<h:outputText/>
+				</h:panelGrid>
+				<h:outputText/>
+			</h:panelGrid>
+			<h:outputText/>
+		</h:panelGrid>
+
+		<div class="buttons">
+			<h:link value="View All" outcome="search" styleClass="btn btn-primary"/> 
+			<h:link value="Edit" outcome="create" includeViewParams="true" styleClass="btn btn-primary"/>
+			<h:link value="Create New" outcome="create" styleClass="btn btn-primary"/>
+		</div>
+	</ui:define>
+
+</ui:composition>
