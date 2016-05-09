@@ -3,7 +3,6 @@ package com.oltruong.bookstore.rest;
 import com.oltruong.bookstore.model.Book;
 import com.oltruong.bookstore.service.BookService;
 
-import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.OptimisticLockException;
 import javax.ws.rs.Consumes;
@@ -21,7 +20,6 @@ import javax.ws.rs.core.UriBuilder;
 /**
  * @author Olivier Truong
  */
-@Stateless
 @Path("/books")
 public class BookEndpoint {
 

@@ -17,7 +17,6 @@ import javax.ws.rs.core.UriBuilder;
 /**
  * @author Olivier Truong
  */
-@Stateless
 @Path("/orders")
 public class OrderEndPoint {
 
