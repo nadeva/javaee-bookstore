@@ -36,17 +36,12 @@ node {
     stage 'Building Docker Img'
 
     sh "docker build -t oltruong/bookstore:${short_commit} ."
-//    image = docker.build("oltruong/bookstore:${short_commit}")
     sh "docker run -d -p 80:8080 --name testjenkins oltruong/bookstore:${short_commit}"
-  //  container = image.run('-P')
-    sh "docker-machine ip > DOCKER_IP"
-    ip = readFile('DOCKER_IP').trim()
-    sh 'rm DOCKER_IP'
 }
 
 stage 'Container validation'
 try {
-    input message: "http://${ip}/bookstore. All Good?", ok: 'Go ahead'
+    input message: "http://localhost/bookstore. All Good?", ok: 'Go ahead'
 } finally {
     node() {
         sh "docker stop testjenkins"
