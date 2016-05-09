@@ -1,7 +1,8 @@
 package com.oltruong.bookstore.view;
 
-import com.oltruong.bookstore.model.Book;
 import com.oltruong.bookstore.model.Order;
+import com.oltruong.bookstore.service.OrderService;
+import com.oltruong.bookstore.model.Book;
 import com.oltruong.bookstore.model.OrderLine;
 import com.oltruong.bookstore.service.BookService;
 
@@ -40,6 +41,10 @@ public class OrderLineBean implements Serializable {
 
     @PersistenceContext(unitName = "javaee-application-persistence-unit", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
+
+
+    @Inject
+    private OrderService orderService;
 
     @Inject
     private BookService bookService;
@@ -99,7 +104,7 @@ public class OrderLineBean implements Serializable {
 
 
     public String sendOrder() {
-
+        orderService.save(order);
         order = new Order();
         return null;
     }

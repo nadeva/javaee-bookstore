@@ -20,7 +20,6 @@ public class Book implements Serializable {
 
 
     public static final String FIND_ALL = "Book.findAll";
-
     private static final float VAT_RATE = 5.5f;
 
     @Id
@@ -132,6 +131,10 @@ public class Book implements Serializable {
 
     public void setPrice(Float price) {
         this.price = price;
+        if (price != null) {
+            vat = price * VAT_RATE / 100;
+        }
+
     }
 
     public String getAuthor() {
@@ -143,6 +146,9 @@ public class Book implements Serializable {
     }
 
 
+    public Float getVat() {
+        return vat;
+    }
 
 
     @Override

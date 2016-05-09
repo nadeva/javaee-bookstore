@@ -1,6 +1,7 @@
 package com.oltruong.bookstore.service;
 
 
+import com.oltruong.bookstore.generator.ISBNGenerator;
 import com.oltruong.bookstore.model.Book;
 
 import javax.ejb.Stateless;
@@ -21,6 +22,9 @@ public class BookService implements Serializable {
     @Inject
     private EntityManager entityManager;
 
+    @Inject
+    private ISBNGenerator isbnGenerator;
+
 
     public Book find(Long id) {
         return entityManager.find(Book.class, id);
@@ -28,8 +32,7 @@ public class BookService implements Serializable {
 
     public void save(Book book) {
 
-//TODO
-//        book.setIsbn(isbnGenerator.generateISBN());
+        book.setIsbn(isbnGenerator.generateISBN());
         entityManager.persist(book);
     }
 

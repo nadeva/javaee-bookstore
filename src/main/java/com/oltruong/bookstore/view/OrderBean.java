@@ -1,7 +1,7 @@
 package com.oltruong.bookstore.view;
 
-import com.google.common.collect.Lists;
 import com.oltruong.bookstore.model.Order;
+import com.oltruong.bookstore.service.OrderService;
 
 import javax.ejb.Stateful;
 import javax.enterprise.context.Conversation;
@@ -20,6 +20,8 @@ public class OrderBean implements Serializable {
     @Inject
     private Conversation conversation;
 
+    @Inject
+    private OrderService orderService;
 
     private static final long serialVersionUID = 1L;
 
@@ -45,9 +47,7 @@ public class OrderBean implements Serializable {
 
 
     public List<Order> getAll() {
-
-        //TODO
-        return Lists.newArrayList();
+        return orderService.findAll();
     }
 
     public void retrieve() {
@@ -63,8 +63,8 @@ public class OrderBean implements Serializable {
     }
 
     private Order findById(Long id) {
-//TODO
-        return null;
+
+        return orderService.find(id);
     }
 
 

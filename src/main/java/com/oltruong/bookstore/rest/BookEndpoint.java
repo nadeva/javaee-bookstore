@@ -70,7 +70,7 @@ public class BookEndpoint {
     @Consumes("application/json")
     public Response update(Book entity) {
         try {
-            bookService.update(entity);
+            entity = bookService.update(entity);
         } catch (OptimisticLockException e) {
             return Response.status(Response.Status.CONFLICT).entity(e.getEntity()).build();
         }
