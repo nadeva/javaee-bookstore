@@ -1,5 +1,8 @@
 node {
     stage 'Checkout'
+
+slackSend 'Starting Job'
+
 //Greatly inspired from https://github.com/alecharp/simple-app
      checkout scm
 //    git url: 'https://github.com/oltruong/bookstore.git'
@@ -22,6 +25,8 @@ node {
         archive "bookstore.war"
     }
 
+slackSend 'Build OK, now building Docker'
+
   stage 'Build Docker'
     stash name: 'binary', includes: "target/bookstore.war"
     dir('src/main/docker') {
@@ -41,6 +46,7 @@ node {
 
 stage 'Container validation'
 try {
+slackSend 'Can you check http://localhost/bookstore ?'
     input message: "http://localhost/bookstore. All Good?", ok: 'Go ahead'
 } finally {
     node() {
@@ -50,12 +56,15 @@ try {
 }
 
 node {
-    stage 'Publishing Docker Img'
+slackSend 'OK pushing'
+     http://localhost/bookstore
+
      sh "docker push oltruong/bookstore:${short_commit}"
 
     stage 'Building latest image'
      sh "docker build -t oltruong/bookstore:latest ."
      sh "docker push oltruong/bookstore:latest"
+slackSend 'Pushing done'
 }
 
 // Custom step
