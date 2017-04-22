@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+
+    <ui:param name="pageTitle" value="Search and order books"/>
+
+    <ui:define name="header">
+        Welcome librarian
+    </ui:define>
+
+    <ui:define name="subheader">
+        Search books
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+
+
+        <div class="col-md-9">
+            <h:dataTable id="bookBeanPageItems" styleClass="table table-striped" value="#{bookBean.all}"
+                         var="_item">
+
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:outputText id="itemName" value="#{_item.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Author"/>
+                    </f:facet>
+                    <h:outputText id="itemAuthor" value="#{_item.author}"/>
+                </h:column> <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Description"/>
+                </f:facet>
+                <h:outputText id="itemDescription" value="#{_item.description}"/>
+            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN"/>
+                    </f:facet>
+                    <h:outputText id="itemISBN" value="#{_item.isbn}"/>
+                </h:column> <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Price"/>
+                </f:facet>
+                <h:outputText id="itemPrice" value="#{_item.price}"/>&euro;
+            </h:column>
+
+                <h:column>
+                    <h:link outcome="/book/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputLabel styleClass="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;View</h:outputLabel>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+        </div>
+
+        <div class="col-md-3">
+
+
+            <h:form id="search">
+                <div class="form-group">
+                    <h:outputLabel for="bookBeanExampleName" value="Name"/>
+                    <h:panelGroup>
+                        <h:inputText id="bookBeanExampleName" maxLength="50"
+                                     value="#{bookBean.example.name}" styleClass="form-control"/>
+                        <h:message for="bookBeanExampleName" styleClass="error"/>
+                    </h:panelGroup>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="bookBeanExampleAuthor" value="Author"/>
+                    <h:panelGroup>
+                        <h:inputText id="bookBeanExampleAuthor" value="#{bookBean.example.author}"
+                                     styleClass="form-control"/>
+                        <h:message for="bookBeanExampleAuthor" styleClass="error"/>
+                    </h:panelGroup>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="bookBeanExampleDescription" value="Description"/>
+                    <h:panelGroup>
+                        <h:inputText id="bookBeanExampleDescription" maxLength="300"
+                                     value="#{bookBean.example.description}" styleClass="form-control"/>
+                        <h:message for="bookBeanExampleDescription" styleClass="error"/>
+                    </h:panelGroup>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="bookBeanExampleIsbn" value="ISBN"/>
+                    <h:inputText id="bookBeanExampleIsbn" maxLength="13" value="#{bookBean.example.isbn}"
+                                 styleClass="form-control"/>
+                    <h:message for="bookBeanExampleIsbn" styleClass="error"/>
+                </div>
+
+                <h:panelGroup styleClass="buttons">
+                    <h:commandLink value="Search" action='#{bookBean.search}' styleClass="btn btn-info"/>&nbsp;
+                    <h:commandLink value="Create New" action='#{bookBean.create}' styleClass="btn btn-success"/>
+                </h:panelGroup>
+            </h:form>
+
+
+        </div>
+    </ui:define>
+
+</ui:composition>

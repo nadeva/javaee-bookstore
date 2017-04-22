@@ -1,0 +1,37 @@
+<div class="col-md-12">
+    <div class="page-header">
+        <h1> Welcome delivery man
+        </h1>
+    </div>
+
+    <div class="col-md-9">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Created</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="order in orders">
+                <td>{{order.name}}</td>
+                <td>{{order.address}}</td>
+                <td>{{order.creationDate | date:'dd.MM.yyyy HH:mm' }}</td>
+                <td>{{order.totalOrder | number:2}}&euro;</td>
+                <td><a href="#/orders/{{order.id}}"><label class="btn btn-primary"><span
+                        class="glyphicon glyphicon-search"></span>&nbsp;View</label></a></td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,64 @@
+<div class="col-md-12">
+    <div class="page-header">
+        <h1>
+            Book
+            <small>
+                View existing Book
+            </small>
+        </h1>
+    </div>
+
+</div>
+
+<div class="col-md-3 thumbnail">
+    <img src="{{book.pictureURL}}" alt="image"/>
+</div>
+<div class="col-md-6">
+
+
+    <div class="form-group"><label for="bookBeanBookName">Name</label><label class="form-control"
+                                                                             ng-show="!editing">{{book.name}}</label>
+        <input id="bookBeanBookName" type="text" ng-model="book.name" class="form-control" ng-show="editing"/>
+
+    </div>
+    <div class="form-group"><label for="bookBeanBookAuthor">Author</label><label
+            class="form-control"
+            ng-show="!editing">{{book.author}}</label>
+        <input id="bookBeanBookAuthor" type="text" ng-model="book.author" class="form-control" ng-show="editing"/>
+
+    </div>
+    <div class="form-group"><label for="bookBeanBookDescription">Description</label><label
+            class="form-control"
+            ng-show="!editing">{{book.description}}</label>
+        <input id="bookBeanBookDescription" type="text" ng-model="book.description" class="form-control"
+               ng-show="editing"/>
+    </div>
+    <div class="form-group"><label for="bookBeanBookIsbn">ISBN</label><label class="form-control"
+                                                                             ng-show="!editing">{{book.isbn}}</label><input
+            id="bookBeanBookIsbn" type="text" ng-model="book.isbn" class="form-control" ng-show="editing"/>
+    </div>
+    <div class="form-group"><label for="bookBeanBookPrice">Price</label><label
+            class="form-control" ng-show="!editing">{{book.price}}</label><input
+            id="bookBeanBookPrice" type="text" ng-model="book.price" class="form-control" ng-show="editing"/>
+    </div>
+    <div class="form-group" ng-show="editing"><label for="createbookBeanBookPictureURL">Picture URL</label><input
+            id="createbookBeanBookPictureURL" type="text" ng-model="book.pictureURL" class="form-control"/>
+    </div>
+
+    <button class="btn btn-success" ng-show="editing" ng-click="saveBook()">Save</button>
+    &nbsp;
+    <button class="btn btn-warning" ng-show="editing" ng-click="cancel()">Cancel</button>
+    &nbsp;
+    <button class="btn btn-danger" ng-click="delete()" ng-show="editing && book.id!==undefined">Delete</button>
+</div>
+
+<div class="col-md-3"><a href="#/books" class="btn btn-primary" ng-show="!editing">View All</a>
+    <button class="btn btn-info" ng-click="edit()"
+            ng-show="!editing">Edit
+    </button>
+    <button class="btn btn-success" ng-click="newBook()"
+            ng-show="!editing">Create New
+    </button>
+</div>
+</div>
+</div>

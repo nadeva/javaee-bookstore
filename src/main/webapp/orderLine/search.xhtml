@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+
+    <ui:param name="pageTitle" value="Order books"/>
+
+    <ui:define name="header">
+        Order books
+    </ui:define>
+
+    <ui:define name="subheader">
+        Select which book to add to your basket
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+        <div class="col-md-9">
+
+            <h:dataTable id="bookBeanPageItems" styleClass="table table-striped" value="#{orderLineBean.allBooks}"
+                         var="_item">
+
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:outputText id="itemName" value="#{_item.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Author"/>
+                    </f:facet>
+                    <h:outputText id="itemAuthor" value="#{_item.author}"/>
+                </h:column> <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Description"/>
+                </f:facet>
+                <h:outputText id="itemDescription" value="#{_item.description}"/>
+            </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN"/>
+                    </f:facet>
+                    <h:outputText id="itemISBN" value="#{_item.isbn}"/>
+                </h:column> <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Price"/>
+                </f:facet>
+                <h:outputText id="itemPrice" value="#{_item.price}"/>&euro;
+            </h:column>
+
+                <h:column>
+                    <h:form>
+                        <h:commandLink action='#{orderLineBean.addBook(_item)}'>
+                            <h:outputLabel styleClass="btn btn-success"><span
+                                    class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Buy</h:outputLabel>
+                        </h:commandLink>
+                    </h:form>
+                </h:column>
+            </h:dataTable>
+
+
+        </div>
+        <div class="col-md-3">
+            <h2>Basket</h2>
+            <h:form id="search">
+
+                <h:dataTable styleClass="table table-striped"
+                             value="#{orderLineBean.order.orderLines}"
+                             var="_item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Book"/>
+                        </f:facet>
+                        <h:outputText id="itemBookName" value="#{_item.book.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Quantity"/>
+                        </f:facet>
+
+                        <h:outputText id="itemQuantity" value="#{_item.quantity}"/>
+                    </h:column>
+                </h:dataTable>
+
+                <div class="form-group">
+                    <h:outputLabel for="orderTotal" value="Total"/>
+                    <h:outputText id="orderTotal" maxLength="50" required="true"
+                                  value="#{orderLineBean.order.totalOrder}" styleClass="form-control alert-success"/>
+                </div>
+
+                <div class="form-group">
+                    <h:outputLabel for="orderName" value="Name"/>
+                    <h:inputText id="orderName" maxLength="50" required="true"
+                                 value="#{orderLineBean.order.name}" styleClass="form-control"/>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel for="orderAddress" value="Address"/>
+                    <h:inputText id="orderAddress" maxLength="50" required="true"
+                                 value="#{orderLineBean.order.address}" styleClass="form-control"/>
+                </div>
+
+                <h:commandLink value="Send Order" action='#{orderLineBean.sendOrder}'
+                               styleClass="btn btn-success"/>
+
+            </h:form>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

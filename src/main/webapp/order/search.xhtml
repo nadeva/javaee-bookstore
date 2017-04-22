@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/resources/scaffold/pageTemplate.xhtml">
+    <ui:param name="pageTitle" value="Search Order entities"/>
+
+    <ui:define name="header">
+        Order
+    </ui:define>
+
+    <ui:define name="subheader">
+        Search Orders
+    </ui:define>
+
+    <ui:define name="footer"/>
+
+    <ui:define name="main">
+
+        <div class="col-md-9">
+            <h:dataTable id="orderBeanPageItems" styleClass="table table-striped" value="#{orderBean.all}"
+                         var="_item">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Name"/>
+                    </f:facet>
+                    <h:outputText id="itemName" value="#{_item.name}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Address"/>
+                    </f:facet>
+                    <h:outputText id="itemAddress" value="#{_item.address}"/>
+                </h:column> <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Created"/>
+                </f:facet>
+                <h:outputText id="itemCreationDate" value="#{_item.creationDate}">
+                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm"/>
+                </h:outputText>
+            </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Total"/>
+                    </f:facet>
+                    <h:outputText id="itemTotal" value="#{_item.totalOrder}"/>&euro;
+                </h:column>
+                <h:column>
+                    <h:link outcome="/order/view">
+                        <f:param name="id" value="#{_item.id}"/>
+                        <h:outputLabel styleClass="btn btn-primary"><span class="glyphicon glyphicon-search"></span>&nbsp;View</h:outputLabel>
+                    </h:link>
+                </h:column>
+            </h:dataTable>
+        </div>
+
+    </ui:define>
+
+</ui:composition>

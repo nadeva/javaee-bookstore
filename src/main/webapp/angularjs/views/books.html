@@ -1,0 +1,58 @@
+<div class="col-md-12">
+    <div class="page-header">
+        <h1> Welcome librarian
+        </h1>
+    </div>
+
+    <div class="col-md-9">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>ISBN</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="book in books | filter:filterBook">
+
+                <td>{{book.name}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.description}}</td>
+                <td>{{book.isbn}}</td>
+                <td>{{book.price}}&euro;</td>
+                <td><a href="#/books/{{book.id}}"><label class="btn btn-primary"><span
+                        class="glyphicon glyphicon-search"></span>&nbsp;View</label></a></td>
+            </tr>
+
+            </tbody>
+
+        </table>
+
+
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group"><label for="bookBeanBookName">Name</label>
+            <input id="bookBeanBookName" type="text" ng-model="namefilter" class="form-control"/>
+        </div>
+        <div class="form-group"><label for="bookBeanBookAuthor">Author</label>
+            <input id="bookBeanBookAuthor" type="text" ng-model="authorfilter" class="form-control"/>
+
+        </div>
+        <div class="form-group"><label for="bookBeanBookDescription">Description</label>
+            <input id="bookBeanBookDescription" type="text" ng-model="descriptionfilter" class="form-control"
+                    />
+        </div>
+        <div class="form-group"><label for="bookBeanBookIsbn">ISBN</label><input
+                id="bookBeanBookIsbn" type="text" ng-model="isbnfilter" class="form-control"/>
+        </div>
+        <a href="#/newbook" class="btn btn-success">Create New
+        </a>
+    </div>
+
+</div>
