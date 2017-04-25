@@ -30,8 +30,6 @@
     </properties>
 
     <dependencies>
-
-
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -158,7 +156,8 @@
                 <failOnMissingWebXml>false</failOnMissingWebXml>
                 <h2.version>1.4.194</h2.version>
             </properties>
-            
+
+
             <dependencyManagement>
                 <dependencies>
                     <dependency>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <title>#{empty pageTitle ? 'Bookstore' : pageTitle}</title>
@@ -78,9 +79,11 @@
         </div>
     </div>
     <footer>
+        <p:spinner/>
         <div class="text-center">
-            <p>Source code available on <a href="https://github.com/nadeva/javaee-bookstore"
-                                           target="_blank">GitHub</a></p>
+            <p>Source code on <a href="https://github.com/nadeva/javaee-bookstore"
+                                 target="_blank">GitHub</a></p>
+
         </div>
     </footer>
     <h:outputScript name="js/jquery-2.1.1.min.js"></h:outputScript>
