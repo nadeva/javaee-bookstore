@@ -7,6 +7,6 @@ Java EE sample typical bookstore app using both JSF and AngularJS.
 ## Demo
 Automatically deployed on
 
-https://bookstore-nadeva.rhcloud.com/
+https://javaee-bookstore.herokuapp.com
 
 Database is in memory and is reset at each deployment.
