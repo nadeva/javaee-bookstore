@@ -2,15 +2,6 @@ language: java
 jdk:
 - oraclejdk8
 deploy:
-- provider: openshift
-  user: olivier@nadeva.fr
-  password:
-    secure: 7V+3DHlEvg1JlwX87C0t9S78WIBn/unsOEg/5ypnen85hNzhVBd5RgdE4nHEWXQEC77QIXT3tFra6WGpBNc9mGYbahGBQh3In7t5aHknDolkys1XCOZsUy2H5qzl6AMZW1eHb2sYqVI2N1Z1G0Tc28oEpR+2I7PsEoOY2UPtmQ+eGhYAABGZKLfaVXE4HKrk39m45Z32668IGts9zLJHRtiC8D+ebjWawo5uIkrFneRJJuUXkXpanE151t0f3GYXxbHsXnFkBk82x7ovkGY4it7z8bO1kGp56kILuR66gveOxtDGCLLNyRBZxYT+UO0xdinMesRZAjSeCunrEgEwA05DaHSDkcgvzXyWCfruWGdLPaAnEdnCf0527baU0uOZFiZIqvuIImzepkd7fmxF2/YNO987PGHyKkwgSEe4WaixJeTTqBxA8ZuFOZ5flrEwf4G1yw/1d73bx/bTzTaJoAZCgDN/j8u5nmisNcjWE58AQfHpCuWUO5Gq3BTy7ZMgREPQmxO5O9rk1Y/J58Eglt7VPCmDP2xOggxpHLB/ci9d1XLpbCbqsG2Wfu8kv8K7wvj/TASoKYd9PdsKD38HZkxsXant30Fv4zPzEZwagxXpVGowelasjczgYd7vizmhzMhmdYCBOIKFqdRlPvlGw4UmfuKUxUHI23JAyH/rl3w=
-  app: bookstore
-  domain: nadeva
-  on:
-    repo: nadeva/javaee-bookstore
-    branch: master
 - provider: heroku
   skip_cleanup: true
   api_key:
