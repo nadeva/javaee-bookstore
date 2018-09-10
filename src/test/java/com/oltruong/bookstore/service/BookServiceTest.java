@@ -48,7 +48,6 @@ public class BookServiceTest {
         Book bookFound = bookService.find(id);
         assertThat(book).as("Book").isEqualTo(bookFound);
         verify(mockEntityManager).find(eq(Book.class), eq(id));
-
     }
 
 
@@ -61,7 +60,6 @@ public class BookServiceTest {
 
         verify(mockEntityManager).find(eq(Book.class), eq(id));
         verify(mockEntityManager).remove(eq(book));
-
     }
 
     private Book createBook() {
