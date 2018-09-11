@@ -2,6 +2,7 @@ package com.oltruong.bookstore.model;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
@@ -37,7 +38,7 @@ public class BookIT {
     }
 
 
-    @Test
+    @Ignore
     public void createBook() throws Exception {
 
         Book book = new Book();

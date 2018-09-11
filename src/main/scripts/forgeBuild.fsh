@@ -2,7 +2,7 @@
 # Requires AngularJS addon. Otherwise it will be
 # To execute first time:  addon-install --coordinate org.jboss.forge.addon:angularjs
 #
-project-new --named bookstoreForge --top-level-package com.oltruong.bookstore --build-system JAVA_EE_7
+project-new --named bookstoreForge --top-level-package com.oltruong.bookstore --build-system Maven --stack JAVA_EE_7
 
 jpa-setup
 constraint-setup
