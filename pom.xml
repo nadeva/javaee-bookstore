@@ -17,16 +17,16 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven-war-plugin.version>2.3</maven-war-plugin.version>
 
-        <javaee-api.version>7.0</javaee-api.version>
-        <commons-lang3.version>3.4</commons-lang3.version>
+        <javaee-api.version>8.0</javaee-api.version>
+        <commons-lang3.version>3.8</commons-lang3.version>
         <junit.version>4.12</junit.version>
         <simplelenium.version>2.2</simplelenium.version>
         <mockito-all.version>1.10.8</mockito-all.version>
         <assertj-core.version>3.2.0</assertj-core.version>
 
-        <h2.version>1.4.194</h2.version>
-        <hibernate-core.version>5.1.0.Final</hibernate-core.version>
-        <cucumber.version>1.2.4</cucumber.version>
+        <h2.version>1.4.197</h2.version>
+        <hibernate-core.version>5.3.6.Final</hibernate-core.version>
+        <cucumber.version>1.2.5</cucumber.version>
     </properties>
 
     <dependencies>
@@ -85,14 +85,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-core.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-
-        <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
             <version>${cucumber.version}</version>
@@ -108,6 +100,16 @@
 
     </dependencies>
 
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://jcenter.bintray.com/</url>
+        </repository>
+    </repositories>
 
     <url>https://github.com/nadeva/javaee-bookstore</url>
 
@@ -152,9 +154,9 @@
             </activation>
 
             <properties>
-                <version.wildfly.swarm>2017.3.3</version.wildfly.swarm>
+                <version.wildfly.swarm>2018.5.0</version.wildfly.swarm>
                 <failOnMissingWebXml>false</failOnMissingWebXml>
-                <h2.version>1.4.194</h2.version>
+                <h2.version>1.4.197</h2.version>
             </properties>
 
 

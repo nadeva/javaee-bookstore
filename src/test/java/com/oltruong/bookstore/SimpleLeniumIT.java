@@ -26,8 +26,8 @@ public class SimpleLeniumIT extends SeleniumTest {
     private String[] description2 = {" Achetez sans hésiter", " J'adore", " Fuyez", " Attendez qu'on vous l'offre"};
 
     private String[] bookname = {"Les aventures de ", "Le retour de ", "La vengeance de ", "Les origines de ", "Il était une fois "};
-    private String[] bookname2 = {"Gérard Lambert", "Paul Bismuth", "l'Oncle Picsou", "Chuck Norris", "Jean-Claude", "Rodolphe", "Zlatan", "Candy"};
-    private String[] bookname3 = {" en vacances", " à la mer", " à la montagne", " en cours d'info", "  épisode VIII", " Origins", " Reboot"};
+    private String[] bookname2 = {"Gérard Lambert", "Paul Bismuth", "l'Oncle Picsou", "Chuck Norris", "Jean-Claude", "Rodolphe", "Zlatan", "Candy", "Jupiter"};
+    private String[] bookname3 = {" en vacances", " à la mer", " à la montagne", " en cours d'info", "  épisode VIII", " Origins", " Reboot", " Ragnarok", "GATE"};
 
     private String[] url = {
             "http://www.apprendre-en-ligne.net/bloginfo/images/humour/geek_martine-ecrit-en-utf-8.jpg",
@@ -88,6 +88,7 @@ public class SimpleLeniumIT extends SeleniumTest {
 
     @Override
     protected String getDefaultBaseUrl() {
+//        return "http://localhost:8081/angularjs/index.html#";
         return "http://localhost:8080/bookstore/angularjs/index.html#";
     }
 }
