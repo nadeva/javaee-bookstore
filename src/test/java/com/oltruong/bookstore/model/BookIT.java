@@ -2,14 +2,14 @@ package com.oltruong.bookstore.model;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -38,7 +38,7 @@ public class BookIT {
     }
 
 
-    @Ignore
+    @Test
     public void createBook() throws Exception {
 
         Book book = new Book();
@@ -55,7 +55,7 @@ public class BookIT {
         assertNotNull("ID should not be null", book.getId());
 
         // Retrieves all the books from the database
-        List<Book> books = entityManager.createNamedQuery(Book.FIND_ALL,Book.class).getResultList();
+        List<Book> books = entityManager.createNamedQuery(Book.FIND_ALL, Book.class).getResultList();
         assertEquals("1 book should be found", 1, books.size());
 
         Book bookFromDatabase = books.get(0);
