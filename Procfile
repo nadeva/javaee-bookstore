@@ -1,1 +1,1 @@
-web: java -jar -Dswarm.http.port=$PORT target/bookstore-swarm.jar
+web: java -jar -Dswarm.http.port=$PORT target/bookstore-thorntail.jar
