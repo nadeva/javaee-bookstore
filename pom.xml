@@ -150,7 +150,7 @@
         <profile>
             <id>thorntail</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
 
             <properties>
@@ -225,25 +225,16 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <!-- For OpenShift deployment -->
-        <profile>
-            <id>openshift</id>
-            <build>
-                <finalName>bookstore</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>${maven-war-plugin.version}</version>
-                        <configuration>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
-                            <outputDirectory>deployments</outputDirectory>
-                            <warName>ROOT</warName>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <repositories>
+                <repository>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>Central Repository</name>
+                    <url>https://jcenter.bintray.com/</url>
+                </repository>
+            </repositories>
         </profile>
     </profiles>
 </project>
