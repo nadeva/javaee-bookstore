@@ -32,7 +32,8 @@ public class SimpleLeniumIT extends SeleniumTest {
     private String[] url = {
             "http://www.apprendre-en-ligne.net/bloginfo/images/humour/geek_martine-ecrit-en-utf-8.jpg",
             "http://media.paperblog.fr/i/389/3899431/martine-fait-rire-L-yhd636.jpeg",
-            "http://ecx.images-amazon.com/images/I/51jPjhneLhL._SX377_BO1,204,203,200_.jpg"
+            "http://ecx.images-amazon.com/images/I/51jPjhneLhL._SX377_BO1,204,203,200_.jpg",
+            "https://images-na.ssl-images-amazon.com/images/I/51KYdr4dXcL._SX210_.jpg"
 
     };
 
