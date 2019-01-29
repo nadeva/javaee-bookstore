@@ -12,10 +12,10 @@ jobs:
     - stage: Build Java 11
       script: mvn install -B
 
-    - stage: Build Java 8
+    - stage: Build Java 8 and deploy
       script:
         - jdk_switcher use openjdk8
-        - mvn install -Pthorntail -B
+        - mvn clean install -Pthorntail -B
 
       deploy:
       - provider: heroku
