@@ -13,8 +13,6 @@ jobs:
       script: mvn install -B
 
     - stage: Build Java 8
-      jdk:
-        - oraclejdk8
       script:
         - jdk_switcher use openjdk8
         - mvn install -Pthorntail -B
