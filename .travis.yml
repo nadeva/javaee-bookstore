@@ -9,23 +9,23 @@ jdk:
 
 jobs:
   include:
-    - stage: Build Java 11
-      script: mvn install -B
+#    - stage: Build Java 11
+#      script: mvn install -B
 
     - stage: Build Java 8 and deploy
       script:
         - jdk_switcher use openjdk8
         - mvn clean install -Pthorntail -B
 
-      deploy:
-      - provider: heroku
-        skip_cleanup: true
-        api_key:
-          secure: VBk6kxTqYNI35EDyzAuzLAjSkcZ3sqiM4OqBcEIWwILnM5u0Myxq8waYNVKydHJdTUfWnA1CTex1clXDt5Gr/3TTd1Z1k5hFM1QDv0puEpTn0CRYFo1cNmeONO0Zc5fp1z/SDFv23A7kszt9f13mo9/3ML44n95TridFoEQ6KiOZsfs6RKGB9bMNpkEsYB7HZIpm6coKY8Dxc1jYHG8QcH9yioUGY3vPeT8LTh0rBg4KUJjPduf4i1sUbGpu8PiG6HvsrxDf2KbQdPKmF8my08/SqCHy/OdT6Z8Z6lp7zRfV2wUQ+E1hRPYFSQP76fjfP0fmOyXqRyvNscM94w90m959lyVNJCiHo4yEYhhc5q8ID1ijf3h9gQrwphdrGmCiwwTZorhCRW5PixzDyZYE/VcfiYmgGHc1UpJ70VLouME8WgqNi3FkldlE8LT3iY5CI2DhAI6Pm0xc5DOiFbw5xBGaKBft/beFULM2WjOAK+IIXdAgFEyzYVykD+bfxpoNvpE3APboB1Cwrufv2wriOsUbwxwRsDMxbTLahemAMtUtoKKdNn5Q57LCrRGyJ7J/ITXBg5dT+yl1LgOUsI3JwudwuD8DYzb/2HLtbI4WeJB1gxhkkAcZjQVOyFDZFlsx2tE8H/i4EWqDTdQcu4OPAmVhNjJDT0lPpfVYG8uv4w0=
-        app: javaee-bookstore
-        on:
-          repo: nadeva/javaee-bookstore
-      notifications:
-        slack:
-          secure: 7Cz9dIpVXauQ8eARIXIcazbNqLJBaXSM48NcTJx6L38Fu1cUyjxcOp1KFwe4mTto0JT+zXtQw1mzCjt7mkr5SX9YzvNGMjoYTXm5Aqv21ACUaVIXyairv0kk2fXmojKmJ2qFf5Q34sIIPCFaSUV079l8KLgBIt0EWca5Z9qL8oluWUg9slUn5O5CAeZHi9OiFpF7dUFpEzPXCBe452annpcaV8azP3vWPJ3fJjpZd6Vq9TyGAtUNT7Ml8BwDBFg2Nq7EfWdGFzPrJ5tclmTHXMIwWxxgm0oH60aQM7eQicnyWA67dTfyJ1RK9OANF8sFQm02gtUBYMrd5prIuvkxsgf+OZpNTsF79I6Qxz9XJAPrh1eRnA/iR08NZuf/rEJV5eJJGA/N8FWvcx6QQdWe3O3DdBe/SOPOa9L8ItKOJubxBLrqkSWi+qXQQwE2z9i0xSAc9v1vJ4MAmTO367aR8WngHJzMjrcTXsCJAeTt7HhwYauAbz4Obgw0KAhfs8logbY0KYGCm0Js0yEKVMAg/WZNG3KFTrQaSaMmHGCdqNc9Vv/wON0Ru0i9X5MZFv6SKG11+rnIMP1uYjEmD1JnMZUeZk9IuU9I2jUWyMrPWCTIyFV6yOJfmOQ4AUA6pEIYSD+zgNmXEKA32ubtWKZ7MpSGn0kCnVmCBgoF8vAL5zw=
-          on_success: change
+#      deploy:
+#      - provider: heroku
+#        skip_cleanup: true
+#        api_key:
+#          secure: VBk6kxTqYNI35EDyzAuzLAjSkcZ3sqiM4OqBcEIWwILnM5u0Myxq8waYNVKydHJdTUfWnA1CTex1clXDt5Gr/3TTd1Z1k5hFM1QDv0puEpTn0CRYFo1cNmeONO0Zc5fp1z/SDFv23A7kszt9f13mo9/3ML44n95TridFoEQ6KiOZsfs6RKGB9bMNpkEsYB7HZIpm6coKY8Dxc1jYHG8QcH9yioUGY3vPeT8LTh0rBg4KUJjPduf4i1sUbGpu8PiG6HvsrxDf2KbQdPKmF8my08/SqCHy/OdT6Z8Z6lp7zRfV2wUQ+E1hRPYFSQP76fjfP0fmOyXqRyvNscM94w90m959lyVNJCiHo4yEYhhc5q8ID1ijf3h9gQrwphdrGmCiwwTZorhCRW5PixzDyZYE/VcfiYmgGHc1UpJ70VLouME8WgqNi3FkldlE8LT3iY5CI2DhAI6Pm0xc5DOiFbw5xBGaKBft/beFULM2WjOAK+IIXdAgFEyzYVykD+bfxpoNvpE3APboB1Cwrufv2wriOsUbwxwRsDMxbTLahemAMtUtoKKdNn5Q57LCrRGyJ7J/ITXBg5dT+yl1LgOUsI3JwudwuD8DYzb/2HLtbI4WeJB1gxhkkAcZjQVOyFDZFlsx2tE8H/i4EWqDTdQcu4OPAmVhNjJDT0lPpfVYG8uv4w0=
+#        app: javaee-bookstore
+#        on:
+#          repo: nadeva/javaee-bookstore
+#      notifications:
+#        slack:
+#          secure: 7Cz9dIpVXauQ8eARIXIcazbNqLJBaXSM48NcTJx6L38Fu1cUyjxcOp1KFwe4mTto0JT+zXtQw1mzCjt7mkr5SX9YzvNGMjoYTXm5Aqv21ACUaVIXyairv0kk2fXmojKmJ2qFf5Q34sIIPCFaSUV079l8KLgBIt0EWca5Z9qL8oluWUg9slUn5O5CAeZHi9OiFpF7dUFpEzPXCBe452annpcaV8azP3vWPJ3fJjpZd6Vq9TyGAtUNT7Ml8BwDBFg2Nq7EfWdGFzPrJ5tclmTHXMIwWxxgm0oH60aQM7eQicnyWA67dTfyJ1RK9OANF8sFQm02gtUBYMrd5prIuvkxsgf+OZpNTsF79I6Qxz9XJAPrh1eRnA/iR08NZuf/rEJV5eJJGA/N8FWvcx6QQdWe3O3DdBe/SOPOa9L8ItKOJubxBLrqkSWi+qXQQwE2z9i0xSAc9v1vJ4MAmTO367aR8WngHJzMjrcTXsCJAeTt7HhwYauAbz4Obgw0KAhfs8logbY0KYGCm0Js0yEKVMAg/WZNG3KFTrQaSaMmHGCdqNc9Vv/wON0Ru0i9X5MZFv6SKG11+rnIMP1uYjEmD1JnMZUeZk9IuU9I2jUWyMrPWCTIyFV6yOJfmOQ4AUA6pEIYSD+zgNmXEKA32ubtWKZ7MpSGn0kCnVmCBgoF8vAL5zw=
+#          on_success: change
