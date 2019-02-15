@@ -8,16 +8,15 @@ git:
   depth: 3
 
 jdk:
-  - openjdk11
+  - openjdk8
 
 jobs:
   include:
-    - stage: Build Java 11
+    - stage: Build
       script: mvn install -B
 
-    - stage: Build Java 8 and deploy
+    - stage: Build and deploy
       script:
-        - jdk_switcher use openjdk8
         - mvn clean install -Pthorntail -B
 
       before_deploy: sed -i -e 's:<activeByDefault>false</activeByDefault>:<activeByDefault>true</activeByDefault>:g' pom.xml
