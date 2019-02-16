@@ -30,7 +30,6 @@ public class Book implements Serializable {
     @Column(name = "version")
     private int version;
 
-    @Column(length = 17)
     private String isbn;
 
     @Column(length = 50)
