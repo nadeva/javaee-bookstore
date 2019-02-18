@@ -1,7 +1,7 @@
 node {
-    stage 'Checkout'
+    stage ('Checkout')
 
-    slackSend '['+env.BUILD_TAG+']Starting Job'
+    slackSend message:'['+env.BUILD_TAG+']Starting Job'
 
 //  Greatly inspired from https://github.com/alecharp/simple-app
     checkout scm
@@ -11,7 +11,7 @@ node {
 
     currentBuild.description = "${short_commit}"
 
-    stage 'Build'
+    stage ('Build')
     withMaven {
         sh 'mvn clean verify'
     }
@@ -23,9 +23,9 @@ node {
         archive "bookstore.war"
     }
 
-    slackSend 'Build OK, now building Docker'
+    slackSend message:'Build OK, now building Docker'
 
-    stage 'Build Docker'
+    stage ('Build Docker')
     stash name: 'binary', includes: "target/bookstore.war"
     dir('src/main/docker') {
         stash name: 'dockerfile', includes: 'Dockerfile'
@@ -36,7 +36,7 @@ node {
     unstash 'dockerfile'
     unstash 'binary'
 
-    stage 'Building Docker Img'
+    stage ('Building Docker Img')
 
     sh "docker build -t oltruong/bookstore:${short_commit} ."
     sh "docker run -d -p 80:8080 --name testjenkins oltruong/bookstore:${short_commit}"
@@ -44,7 +44,7 @@ node {
 
 stage 'Container validation'
 try {
-    slackSend '['+env.BUILD_TAG+'] Can you check http://localhost/bookstore ?'
+    slackSend message:'['+env.BUILD_TAG+'] Can you check http://localhost/bookstore ?'
     input message: "http://localhost/bookstore. All Good?", ok: 'Go ahead'
 } finally {
     node() {
@@ -54,14 +54,14 @@ try {
 }
 
 node {
-    slackSend '['+env.BUILD_TAG+'] OK, pushing Docker image'
+    slackSend message:'['+env.BUILD_TAG+'] OK, pushing Docker image'
 
     sh "docker push oltruong/bookstore:${short_commit}"
 
     stage 'Building latest image'
     sh "docker build -t oltruong/bookstore:latest ."
     sh "docker push oltruong/bookstore:latest"
-    slackSend '['+env.BUILD_TAG+'] Pushing done :checkered_flag:'
+    slackSend message:'['+env.BUILD_TAG+'] Pushing done :checkered_flag:'
 }
 
 // Custom step
