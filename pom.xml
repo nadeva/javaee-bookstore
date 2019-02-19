@@ -120,6 +120,17 @@
             <url>https://jcenter.bintray.com/</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://jcenter.bintray.com/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
 
     <url>https://github.com/nadeva/javaee-bookstore</url>
 
@@ -245,16 +256,6 @@
                     </plugin>
                 </plugins>
             </build>
-            <repositories>
-                <repository>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                    <id>central</id>
-                    <name>Central Repository</name>
-                    <url>https://jcenter.bintray.com/</url>
-                </repository>
-            </repositories>
         </profile>
     </profiles>
 </project>
