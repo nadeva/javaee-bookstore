@@ -13,7 +13,7 @@ node {
 
     stage ('Build')
     withMaven {
-        sh 'mvn clean verify'
+        sh './mvnw clean verify'
     }
 
     step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
@@ -66,8 +66,7 @@ node {
 
 // Custom step
 def withMaven(def body) {
-    def javaHome = tool name: 'oracle-8u102', type: 'hudson.model.JDK'
-    def mavenHome = tool name: 'maven-3.3.9', type: 'hudson.tasks.Maven$MavenInstallation'
+    def javaHome = tool name: 'current', type: 'hudson.model.JDK'
 
     withEnv(["JAVA_HOME=${javaHome}", "PATH+MAVEN=${mavenHome}/bin"]) {
         body.call()
