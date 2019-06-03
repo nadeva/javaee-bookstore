@@ -68,7 +68,7 @@ node {
 def withMaven(def body) {
     def javaHome = tool name: 'current', type: 'hudson.model.JDK'
 
-    withEnv(["JAVA_HOME=${javaHome}", "PATH+MAVEN=${mavenHome}/bin"]) {
+    withEnv(["JAVA_HOME=${javaHome}"]) {
         body.call()
     }
 }
