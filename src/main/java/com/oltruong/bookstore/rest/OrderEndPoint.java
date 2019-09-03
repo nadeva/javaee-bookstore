@@ -20,6 +20,8 @@ import javax.ws.rs.core.UriBuilder;
 @Path("/orders")
 public class OrderEndPoint {
 
+    @Inject
+    private OrderService orderService;
 
     @POST
     @Consumes("application/json")
