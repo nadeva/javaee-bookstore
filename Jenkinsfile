@@ -15,20 +15,16 @@ pipeline {
       steps {
         sh "docker build . -f src/main/docker/Dockerfile -t oltruong/bookstore:$GIT_COMMIT_ID"
         sh "docker run -d -p 80:8080 --name testjenkins oltruong/bookstore:$GIT_COMMIT_ID"
-        slackSend message:'['+env.BUILD_TAG+'] Can you check http://localhost/bookstore ?'
+        slackSend message:'['+env.BUILD_TAG+'] Can you check http://localhost/bookstore?'
       }
     }
         stage('Example') {
             input {
-                message "Should we continue?"
-                ok "Yes, we should."
-                submitter "alice,bob"
-                parameters {
-                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-                }
+                message "Can you check http://localhost/bookstore?"
+                ok "All good"
             }
             steps {
-                echo "Hello, ${PERSON}, nice to meet you."
+                echo "Hello, nice to meet you."
             }
         }
   }
