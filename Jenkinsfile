@@ -18,14 +18,19 @@ pipeline {
         slackSend message:'['+env.BUILD_TAG+'] Can you check http://localhost/bookstore ?'
       }
     }
-    stage('Check Docker') {
-
-    input message: 'http://localhost/bookstore. All Good?', ok: 'ok bob'
-      steps {
-        sh "docker stop testjenkins"
-        sh "docker rm testjenkins"
-      }
-    }
+        stage('Example') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should."
+                submitter "alice,bob"
+                parameters {
+                    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                }
+            }
+            steps {
+                echo "Hello, ${PERSON}, nice to meet you."
+            }
+        }
   }
 
 }
