@@ -19,10 +19,8 @@ pipeline {
       }
     }
     stage('Check Docker') {
-        input {
-         message: "http://localhost/bookstore. All Good?"
-         ok: 'Go ahead'
-        }
+
+    input message: 'http://localhost/bookstore. All Good?', ok: 'ok bob'
       steps {
         sh "docker stop testjenkins"
         sh "docker rm testjenkins"
