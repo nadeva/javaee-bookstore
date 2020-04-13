@@ -1,74 +1,45 @@
-node {
-    stage ('Checkout')
+pipeline {
+  agent any
+  environment {
+    GIT_COMMIT_ID = "${sh(returnStdout: true, script: 'git log --format="%H" -n 1 | cut -c -12')}"
+  }
 
-    slackSend message:'['+env.BUILD_TAG+']Starting Job'
+  stages {
 
-//  Greatly inspired from https://github.com/alecharp/simple-app
-    checkout scm
-    sh 'git rev-parse HEAD > GIT_COMMIT'
-    short_commit = readFile('GIT_COMMIT').trim().take(7)
-    sh 'rm GIT_COMMIT'
-
-    currentBuild.description = "${short_commit}"
-
-    stage ('Build')
-    withMaven {
+    stage('Build Java') {
+      steps {
+        slackSend message: "${JOB_NAME}: Starting build"
         sh './mvnw clean verify'
+      }
+    }
+    stage('Build Docker image') {
+      steps {
+        sh "docker build . -f src/main/docker/Dockerfile -t oltruong/bookstore:$GIT_COMMIT_ID"
+        sh "docker run -d -p 80:8080 --name testjenkins oltruong/bookstore:$GIT_COMMIT_ID"
+        slackSend message: "${BUILD_URL}: Can you check http://localhost/bookstore?"
+      }
     }
 
-    step([$class: 'JUnitResultArchiver', testResults: 'target/surefire-reports/*.xml'])
-    step([$class: 'JUnitResultArchiver', testResults: 'target/failsafe-reports/*.xml'])
-
-    dir('target') {
-        archive "bookstore.war"
+    stage('Push Docker image') {
+      input {
+        message "Can you check http://localhost/bookstore?"
+        ok "All good"
+      }
+      steps {
+        slackSend message: "${JOB_NAME}: Pushing docker image"
+        echo "Pushing image"
+        sh "docker push oltruong/bookstore:$GIT_COMMIT_ID"
+        sh "docker build . -f src/main/docker/Dockerfile -t oltruong/bookstore:latest"
+        sh "docker push oltruong/bookstore:latest"
+      }
     }
+  }
 
-    slackSend message:'Build OK, now building Docker'
-
-    stage ('Build Docker')
-    stash name: 'binary', includes: "target/bookstore.war"
-    dir('src/main/docker') {
-        stash name: 'dockerfile', includes: 'Dockerfile'
+  post {
+    always {
+      echo "Clean docker container"
+      sh "docker stop testjenkins || true && docker rm testjenkins || true"
     }
-}
+  }
 
-node {
-    unstash 'dockerfile'
-    unstash 'binary'
-
-    stage ('Building Docker Img')
-
-    sh "docker build -t oltruong/bookstore:${short_commit} ."
-    sh "docker run -d -p 80:8080 --name testjenkins oltruong/bookstore:${short_commit}"
-}
-
-stage 'Container validation'
-try {
-    slackSend message:'['+env.BUILD_TAG+'] Can you check http://localhost/bookstore ?'
-    input message: "http://localhost/bookstore. All Good?", ok: 'Go ahead'
-} finally {
-    node() {
-        sh "docker stop testjenkins"
-        sh "docker rm testjenkins"
-    }
-}
-
-node {
-    slackSend message:'['+env.BUILD_TAG+'] OK, pushing Docker image'
-
-    sh "docker push oltruong/bookstore:${short_commit}"
-
-    stage 'Building latest image'
-    sh "docker build -t oltruong/bookstore:latest ."
-    sh "docker push oltruong/bookstore:latest"
-    slackSend message:'['+env.BUILD_TAG+'] Pushing done :checkered_flag:'
-}
-
-// Custom step
-def withMaven(def body) {
-    def javaHome = tool name: 'current', type: 'hudson.model.JDK'
-
-    withEnv(["JAVA_HOME=${javaHome}"]) {
-        body.call()
-    }
 }
