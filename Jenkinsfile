@@ -16,7 +16,7 @@ pipeline {
       steps {
         sh "docker build . -f src/main/docker/Dockerfile -t oltruong/bookstore:$GIT_COMMIT_ID"
         sh "docker run -d -p 80:8080 --name testjenkins oltruong/bookstore:$GIT_COMMIT_ID"
-        slackSend message: '${JOB_NAME}: Can you check http://localhost/bookstore?'
+        slackSend message: "${JOB_URL}: Can you check http://localhost/bookstore?"
       }
     }
 
@@ -26,7 +26,7 @@ pipeline {
         ok "All good"
       }
       steps {
-        slackSend message: '${JOB_NAME}: Pushing docker image'
+        slackSend message: "${JOB_NAME}: Pushing docker image"
         echo "Pushing image"
         sh "docker push oltruong/bookstore:$GIT_COMMIT_ID"
         sh "docker build . -f src/main/docker/Dockerfile -t oltruong/bookstore:latest"
