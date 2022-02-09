@@ -28,7 +28,7 @@
         <assertj-core.version>3.2.0</assertj-core.version>
 
         <h2.version>1.4.197</h2.version>
-        <hibernate-core.version>5.3.6.Final</hibernate-core.version>
+        <hibernate-core.version>5.4.24.Final</hibernate-core.version>
         <cucumber.version>1.2.5</cucumber.version>
         <jaxb-runtime.version>2.4.0-b180830.0438</jaxb-runtime.version>
     </properties>
